@@ -21,8 +21,8 @@ export class Stacker{
   else this.layer++;this.slots=[];this.boxes=[];this.spawnClock=.65;this.state='playing';return;
  }
  this.time+=dt;this.levelTime+=dt;this.spawnClock-=dt;if(this.spawnClock<=0){if(this.spawn())this.spawnClock=this.config.interval*(this.practice?1.35:1);else this.spawnClock=.1;}
- for(const b of [...this.boxes]){b.progress+=dt/(this.config.travel*(this.practice?1.3:1));if(b.progress>=1){this.land(b);if(this.state==='lost')break;}}
- if(this.state==='playing'&&this.slots.length===this.lanes*2&&this.boxes.length===0){this.combo+=2;const points=200*this.multiplier;this.score+=points;this.state=this.layer===4?'level':'layer';this.breakTime=this.layer===4?3:1.35;
+ for(const b of [...this.boxes]){const previous=b.progress;b.progress+=dt/(this.config.travel*(this.practice?1.3:1));if(previous<.115&&b.progress>=.115)this.emit('applyLabel',{id:b.id});if(b.progress>=1){this.land(b);if(this.state==='lost')break;}}
+ if(this.state==='playing'&&this.slots.length===this.lanes*2&&this.boxes.length===0){this.combo+=2;const points=200*this.multiplier;this.score+=points;this.state=this.layer===4?'level':'layer';this.breakTime=this.layer===4?3:2.2;
   if(this.layer===4){this.completed++;const bonus=Math.round(4000*60/(60+this.levelTime));this.score+=bonus;this.emit('pallet',{points:points+bonus,level:this.level,completed:this.completed});}
   else this.emit('layer',{points,layer:this.layer+1});
  }

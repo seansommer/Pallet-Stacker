@@ -1,6 +1,7 @@
 import{Stacker,LEVELS,rankRuns,mod4}from'./simulation.js';import{GameScene}from'./scene.js';import{FlatScene}from'./fallback.js';import{Audio}from'./audio.js';import{Community}from'./community.js';
 const $=id=>document.getElementById(id),audio=new Audio(),community=new Community();let scene,sim,playing=false,countdown=0,last=0,acc=0,hudClock=0,cueTimer,endTimer,runId,runOwner,pendingResult,saveBusy=false,boardGeneration=0,view=localStorage.getItem('stackerView')||'line';
-try{scene=new GameScene($('world'),rotate);}catch(e){console.info('Using compatible renderer',e);const canvas=$('world'),replacement=canvas.cloneNode();canvas.replaceWith(replacement);scene=new FlatScene(replacement,rotate);$('camera').hidden=true;}
+try{scene=new GameScene($('world'),rotate);}catch(e){console.info('Using compatible renderer',e);const canvas=$('world'),replacement=canvas.cloneNode();canvas.replaceWith(replacement);scene=new FlatScene(replacement,rotate);$('graphics-notice').hidden=false;}
+$('retry-graphics').onclick=()=>location.reload();
 scene.setView(view);sim=new Stacker({practice:true});
 function rotate(id,dir=1){if(!playing||countdown)return;audio.unlock();sim.rotate(id,dir);}
 function cue(text,bad=false){clearTimeout(cueTimer);const el=$('cue');el.textContent=text;el.className=bad?'bad':'';el.hidden=false;el.style.animation='none';void el.offsetWidth;el.style.animation='';cueTimer=setTimeout(()=>el.hidden=true,900);}
