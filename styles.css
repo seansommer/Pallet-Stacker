@@ -4,3 +4,16 @@
 h1>span,h1>em{display:block}@media(max-width:700px){h1>span,h1>em{display:inline}h1>span{margin-right:.1em}}
 
 #graphics-notice{color:#efcb99}#retry-graphics{background:transparent;color:#c3fb83;text-decoration:underline;font-size:inherit;padding:0}#milestone{top:22%;padding:10px 20px;border:0;background:#0a3129c9;min-width:220px}#milestone strong{font-size:2rem;margin:2px 0}#milestone span{font-size:1.1rem}#cue{top:24%}@media(max-width:700px){#cue{top:24%}#milestone{top:23%}}
+
+/* Light and dark menus share the SUJA appearance preference. */
+body{padding-top:0}.suite-header{padding-top:calc(7px + env(safe-area-inset-top))}
+:root[data-theme=light]{color:#193e2b;background:#f2f8ef;--purple:#8042b6;--line:#d8e5d2}
+[data-theme=light] .menu-card,[data-theme=light] dialog{background:#fbfdfb;color:#193e2b;border-color:#d8e5d2}
+[data-theme=light] .menu-card{box-shadow:0 25px 70px #082e2855}
+[data-theme=light] .menu-copy h1 em,[data-theme=light] .result-score,[data-theme=light] .board li b,[data-theme=light] .board-list li b{color:#197348}
+[data-theme=light] .eyebrow,[data-theme=light] .lead,[data-theme=light] .fine,[data-theme=light] .menu-copy>.fine:last-child,[data-theme=light] #help li,[data-theme=light] .stats span,[data-theme=light] .level-chips span{color:#5e7566}
+[data-theme=light] #help li b,[data-theme=light] .level-chips b,[data-theme=light] .menu-actions button,[data-theme=light] .menu-actions a{color:#193e2b}
+[data-theme=light] .secondary,[data-theme=light] .stats div{background:#eaf1e8;color:#193e2b}
+[data-theme=light] #graphics-notice{color:#80552a}[data-theme=light] #retry-graphics{color:#197348}
+/* Gameplay lettering stays bright against the warehouse in either appearance. */
+#hud{color:#e9ffe6}#cue,#countdown,#lane-controls,#milestone{--purple:#bc94ff}
